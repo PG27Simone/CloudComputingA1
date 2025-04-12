@@ -88,55 +88,47 @@ public class TelemetryManager : MonoBehaviour
 
 
     //CREATING SAVE FILE
-    public void LogSave(string eventName, Dictionary<string, object> parameters = null)
+    public void LogSave(SaveData data)
     {
-        if (parameters == null)
+        if (data == null)
         {
-            parameters = new Dictionary<string, object>();
+            return;
         }
 
-        parameters["eventName"] = eventName;
-
-        eventQueue.Enqueue(parameters);
-
-        if (!isSending) StartCoroutine(SendSave());
+        if (!isSending) StartCoroutine(SendSave(data));
 
     }
 
-    private IEnumerator SendSave()
+    private IEnumerator SendSave(SaveData data)
     {
         isSending = true;
 
-            Dictionary<string, object> currentEvent = eventQueue.Dequeue();
-            string payload = JsonUtility.ToJson(new SerializationWrapper(currentEvent));
+        string json = JsonUtility.ToJson(data);
 
-            using (UnityWebRequest request = new UnityWebRequest(serverSaveURL, "POST"))
+        using (UnityWebRequest request = new UnityWebRequest("http://localhost:3000/save", "POST"))
+        {
+            byte[] bodyRaw = Encoding.UTF8.GetBytes(json);
+            request.uploadHandler = new UploadHandlerRaw(bodyRaw);
+            request.downloadHandler = new DownloadHandlerBuffer();
+            request.SetRequestHeader("Content-Type", "application/json");
+
+            yield return request.SendWebRequest();
+
+            if (request.result != UnityWebRequest.Result.Success)
             {
-                byte[] bodyRaw = Encoding.UTF8.GetBytes(payload);
-                request.uploadHandler = new UploadHandlerRaw(bodyRaw);
-                request.downloadHandler = new DownloadHandlerBuffer();
-
-                request.SetRequestHeader("Content-Type", "application/json");
-                //TODO: Add bearer token --- "bearer ......."
-
-                yield return request.SendWebRequest();
-
-                if (request.result == UnityWebRequest.Result.ConnectionError)
-                {
-                    Debug.LogError($"Error {request.error}");
-
-                }
-                else
-                {
-                    Debug.Log("Request sent: " + payload);
-                }
+                Debug.LogError("Error sending save data: " + request.error);
             }
-            yield return new WaitForSeconds(0.1f);
+            else
+            {
+                Debug.Log("Save data sent successfully");
+            }
+        }
 
 
         isSending = false;
 
     }
+
 
 
     [System.Serializable]

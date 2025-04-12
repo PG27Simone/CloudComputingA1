@@ -19,7 +19,9 @@ const __filename = fileURLToPath(import.meta.url); // get the resolved path to t
 const __dirname = path.dirname(__filename); // get the name of the directory
 
 const PATH = path.join(__dirname, "events.json");
-const SAVEPATH = path.join(__dirname, "save.json");
+
+const UNITY_STREAMING_ASSETS = path.join(__dirname, "..", "Assets", "StreamingAssets");
+const SAVEPATH = path.join(UNITY_STREAMING_ASSETS, "save.json");
 
 app.get("/api/protected", verifyToken, async (req, res) => {
     try {
@@ -62,12 +64,13 @@ app.post('/save', (req, res) => {
     try {
         const eventData = req.body;
 
-        let existingEvents = [];
+        if (!fs.existsSync(UNITY_STREAMING_ASSETS)) {
+            fs.mkdirSync(UNITY_STREAMING_ASSETS, { recursive: true });
+        }
 
         eventData.timestamp = new Date().toISOString();
-        existingEvents.push(eventData);
 
-        fs.writeFileSync(SAVEPATH, JSON.stringify(existingEvents, null, 2));
+        fs.writeFileSync(SAVEPATH, JSON.stringify(eventData, null, 2));
 
         return res.status(200).json({ message: "Data Stored" });
     } catch (error) {

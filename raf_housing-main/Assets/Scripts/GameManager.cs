@@ -35,7 +35,7 @@ public class GameManager : MonoBehaviour
     {
         yield return CountPixels();
         _initialScore = _score;
-        UItext.text = "0";
+        UItext.text = _score.ToString();
     }
 
     public void CountNonWhitePixels()

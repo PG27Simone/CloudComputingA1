@@ -5,12 +5,19 @@ using System;
 using Unity.VisualScripting;
 using static UnityEditor.PlayerSettings;
 using UnityEditor.PackageManager.Requests;
+using System.Xml.Linq;
+using System.Linq;
+using System.IO;
+using UnityEditor.Overlays;
+using TMPro;
 
 public class ButtonClickLogger : MonoBehaviour
 {
 
     public Button myButton;
     public Slider mySlider;
+    public TMP_Text myScore;
+    public GameObject prefab;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -21,44 +28,72 @@ public class ButtonClickLogger : MonoBehaviour
         }
     }
 
+    private void Awake()
+    {
+        LoadData();
+    }
+
 
     private void OnButtonClicked()
     {
+
         try
         {
             string username = SessionManager.Instance.GetUsername();
 
+            SaveData NewSave = new SaveData();
+            NewSave.Name = username;
+            NewSave.SliderValue = mySlider.value;
+
             List<GameObject> houses = FindAllInLayer("Houses");
 
             List<string> housePositions = new List<string>();
-            foreach (GameObject house in houses)
-            {
-                Vector3 position = house.transform.position;
-                housePositions.Add($"({position.x}, {position.y}, {position.z})");
-            }
-
             List<string> houseRotations = new List<string>();
+
             foreach (GameObject house in houses)
             {
-                Quaternion rotation = house.transform.rotation;
-                houseRotations.Add($"({rotation.x}, {rotation.y}, {rotation.z})");
+                HouseData data = new HouseData
+                {
+                    Position = house.transform.position,
+                    Rotation = house.transform.rotation,
+                };
+
+                NewSave.Houses.Add(data);
             }
 
-            TelemetryManager.Instance.LogSave("save_button", new Dictionary<string, object>
-        {
-            {"userName", username},
-            {"buttonName", myButton.name},
-            {"sliderLocation", mySlider.value },
-            {"housePositions", string.Join(", ", housePositions) },
-            {"houseRotations", string.Join(", ", houseRotations) }
+            TelemetryManager.Instance.LogSave(NewSave);
 
-        });
         }
         catch
         {
             Debug.LogError("Cant save. Not logged in.");
         }
         
+    }
+
+    private void LoadData()
+    {
+        string path = Path.Combine(Application.streamingAssetsPath, "save.json");
+
+        if(File.Exists(path))
+        {
+            string json = File.ReadAllText(path);
+            SaveData data = JsonUtility.FromJson<SaveData>(json);
+            mySlider.value = data.SliderValue;
+
+            foreach (HouseData house in data.Houses)
+            {
+                if (prefab != null)
+                {
+                    Instantiate(prefab, house.Position, house.Rotation);
+                }
+            }
+        }
+        else
+        {
+            Debug.LogError("File not found at: " + path);
+        }
+       
     }
 
     public static List<GameObject> FindAllInLayer(string layerName)
