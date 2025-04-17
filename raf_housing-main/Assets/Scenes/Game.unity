@@ -1656,6 +1656,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8504a2c8c7be5004b94b1d860c08fbfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  myScore: {fileID: 463443428}
 --- !u!4 &1147677424
 Transform:
   m_ObjectHideFlags: 0
@@ -2129,9 +2130,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myButton: {fileID: 855520270}
+  myQuitButton: {fileID: 1957598975}
   mySlider: {fileID: 1510886280}
-  myScore: {fileID: 463443428}
   prefab: {fileID: 6083141125498250776, guid: 5b432a27193273a45ab4d33c40faa43c, type: 3}
+  myScore: {fileID: 463443428}
 --- !u!114 &1791665695
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2263,7 +2265,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1957598976}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1957598976
 MonoBehaviour:
   m_ObjectHideFlags: 0

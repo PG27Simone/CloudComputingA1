@@ -1,10 +1,13 @@
 using UnityEngine;
 using System.Collections.Generic;
+using TMPro;
 
 public class SessionTracker : MonoBehaviour
 {
 
     private float sessionStartTime = 0f;
+
+    public TMP_Text myScore;
 
     void Start()
     {
@@ -21,7 +24,8 @@ public class SessionTracker : MonoBehaviour
         float sessionDuration = Time.time - sessionStartTime;
         TelemetryManager.Instance.LogEvent("session_end", new Dictionary<string, object>
         {
-            {"durationSec", sessionDuration },
+            { "score", myScore.text },
+            { "durationSec", sessionDuration },
             {"endTime", System.DateTime.UtcNow.ToString("o") }
         });
     }

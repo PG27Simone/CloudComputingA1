@@ -1,0 +1,19 @@
+[
+  {
+    "keys": [
+      "startTime",
+      "username",
+      "eventName",
+      "sessionId",
+      "deviceTime"
+    ],
+    "values": [
+      "2025-04-17T22:52:24.0824187Z",
+      "vfs",
+      "session_start",
+      "e361aecf-8260-4675-9feb-b8bcaa68bb22",
+      "2025-04-17T22:52:24.0864084Z"
+    ],
+    "timestamp": "2025-04-17T22:52:24.092Z"
+  }
+]

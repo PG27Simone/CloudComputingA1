@@ -10,22 +10,48 @@ using System.Linq;
 using System.IO;
 using UnityEditor.Overlays;
 using TMPro;
+using UnityEditor;
+using UnityEngine.SceneManagement;
 
 public class ButtonClickLogger : MonoBehaviour
 {
 
     public Button myButton;
+    public Button myQuitButton;
     public Slider mySlider;
-    public TMP_Text myScore;
     public GameObject prefab;
+    public TMP_Text myScore;
+
+
+    private float sessionStartTime = 0f;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        sessionStartTime = Time.time;
+
         if (myButton != null)
         {
             myButton.onClick.AddListener(OnButtonClicked);
         }
+        if (myQuitButton != null)
+        {
+            myQuitButton.onClick.AddListener(OnQuitButtonClicked);
+        }
+    }
+
+    private void OnQuitButtonClicked()
+    {
+
+        float sessionDuration = Time.time - sessionStartTime;
+        TelemetryManager.Instance.LogEvent("session_end", new Dictionary<string, object>
+        {
+            { "score", myScore.text },
+            { "durationSec", sessionDuration },
+            {"endTime", System.DateTime.UtcNow.ToString("o") }
+        });
+        SceneManager.LoadScene("MainMenu");
     }
 
     private void Awake()
@@ -43,6 +69,7 @@ public class ButtonClickLogger : MonoBehaviour
 
             SaveData NewSave = new SaveData();
             NewSave.Name = username;
+            NewSave.Score = myScore.text;
             NewSave.SliderValue = mySlider.value;
 
             List<GameObject> houses = FindAllInLayer("Houses");
@@ -73,28 +100,49 @@ public class ButtonClickLogger : MonoBehaviour
 
     private void LoadData()
     {
-        string path = Path.Combine(Application.streamingAssetsPath, "save.json");
+        // Set folder path to the UserSaves/SaveData directory
+        string folderPath = Path.Combine(Application.persistentDataPath, "SaveData");
+        string currentUsername = SessionManager.Instance.GetUsername();
 
-        if(File.Exists(path))
+        if (!Directory.Exists(folderPath))
         {
-            string json = File.ReadAllText(path);
-            SaveData data = JsonUtility.FromJson<SaveData>(json);
-            mySlider.value = data.SliderValue;
+            Debug.LogWarning("Save folder does not exist: " + folderPath);
+            return;
+        }
 
-            foreach (HouseData house in data.Houses)
+        string[] files = Directory.GetFiles(folderPath, "*.json");
+
+        foreach (string filePath in files)
+        {
+            string json = File.ReadAllText(filePath);
+
+            SaveData data = JsonUtility.FromJson<SaveData>(json);
+
+            if (data.Name == currentUsername)
             {
-                if (prefab != null)
-                {
-                    Instantiate(prefab, house.Position, house.Rotation);
-                }
+                Debug.Log("Found matching file: " + filePath);
+                ApplySaveData(data);
+                return;
             }
         }
-        else
-        {
-            Debug.LogError("File not found at: " + path);
-        }
-       
+
+        Debug.LogWarning("No save data found for username: " + currentUsername);
     }
+
+    private void ApplySaveData(SaveData data)
+    {
+        mySlider.value = data.SliderValue;
+        myScore.text = data.Score;
+
+        foreach (HouseData house in data.Houses)
+        {
+            if (prefab != null)
+            {
+                Instantiate(prefab, house.Position, house.Rotation);
+            }
+        }
+    }
+
 
     public static List<GameObject> FindAllInLayer(string layerName)
     {

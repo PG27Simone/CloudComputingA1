@@ -18,10 +18,9 @@ app.use("/api/auth", router);
 const __filename = fileURLToPath(import.meta.url); // get the resolved path to the file
 const __dirname = path.dirname(__filename); // get the name of the directory
 
-const PATH = path.join(__dirname, "events.json");
+const EVENTS_FOLDER = path.join(__dirname, 'Events');
 
-const UNITY_STREAMING_ASSETS = path.join(__dirname, "..", "Assets", "StreamingAssets");
-const SAVEPATH = path.join(UNITY_STREAMING_ASSETS, "save.json");
+const SAVE_FOLDER = path.join(__dirname, 'Saves');
 
 app.get("/api/protected", verifyToken, async (req, res) => {
     try {
@@ -38,20 +37,40 @@ app.get("/api/protected", verifyToken, async (req, res) => {
 //events
 app.post('/telemetry', (req, res) => {
     try {
-        const eventData = req.body;
+        const incomingEvent = req.body;
 
-        let existingEvents = [];
-        if (fs.existsSync(PATH)) {
-            const rawData = fs.readFileSync(PATH, "utf-8");
-            if (rawData.length > 0) {
-                existingEvents = JSON.parse(rawData);
+        if (!incomingEvent.keys || !incomingEvent.values) {
+            return res.status(400).json({ error: "Invalid format: expecting keys and values arrays." });
+        }
+
+        const usernameIndex = incomingEvent.keys.indexOf("username");
+        if (usernameIndex === -1) {
+            return res.status(400).json({ error: "Missing 'username' key in telemetry data." });
+        }
+
+        const username = incomingEvent.values[usernameIndex];
+
+        if (!incomingEvent.timestamp) {
+            incomingEvent.timestamp = new Date().toISOString();
+        }
+
+        if (!fs.existsSync(EVENTS_FOLDER)) {
+            fs.mkdirSync(EVENTS_FOLDER, { recursive: true });
+        }
+
+        const filePath = path.join(EVENTS_FOLDER, `${username}_events.json`);
+        let allEvents = [];
+
+        if (fs.existsSync(filePath)) {
+            const raw = fs.readFileSync(filePath, "utf-8");
+            if (raw.trim().length > 0) {
+                allEvents = JSON.parse(raw);
             }
         }
 
-        eventData.timestamp = new Date().toISOString();
-        existingEvents.push(eventData);
+        allEvents.push(incomingEvent);
+        fs.writeFileSync(filePath, JSON.stringify(allEvents, null, 2));
 
-        fs.writeFileSync(PATH, JSON.stringify(existingEvents, null, 2));
 
         return res.status(200).json({ message: "Data Stored" });
     } catch (error) {
@@ -64,13 +83,22 @@ app.post('/save', (req, res) => {
     try {
         const eventData = req.body;
 
-        if (!fs.existsSync(UNITY_STREAMING_ASSETS)) {
-            fs.mkdirSync(UNITY_STREAMING_ASSETS, { recursive: true });
+        //if no username, error
+        if (!eventData.Name) {
+            return res.status(400).json({ error: "Missing username in request data." });
         }
+
+        //make sure save folder exists
+        if (!fs.existsSync(SAVE_FOLDER)) {
+            fs.mkdirSync(SAVE_FOLDER, { recursive: true });
+        }
+
+        //define personalized save file
+        const userSavePath = path.join(SAVE_FOLDER, `${eventData.Name}_save.json`);
 
         eventData.timestamp = new Date().toISOString();
 
-        fs.writeFileSync(SAVEPATH, JSON.stringify(eventData, null, 2));
+        fs.writeFileSync(userSavePath, JSON.stringify(eventData, null, 2));
 
         return res.status(200).json({ message: "Data Stored" });
     } catch (error) {

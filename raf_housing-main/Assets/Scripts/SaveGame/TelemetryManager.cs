@@ -5,6 +5,8 @@ using UnityEngine.Networking;
 using System;
 using NUnit.Framework;
 using System.Text;
+using TMPro;
+using System.IO;
 
 public class TelemetryManager : MonoBehaviour
 {
@@ -38,14 +40,51 @@ public class TelemetryManager : MonoBehaviour
             parameters = new Dictionary<string, object>();
         }
 
+        parameters["username"] = SessionManager.Instance.GetUsername();
         parameters["eventName"] = eventName;
         parameters["sessionId"] = System.Guid.NewGuid().ToString();
         parameters["deviceTime"] = System.DateTime.UtcNow.ToString("o");
 
+        //to save locally
+        SaveEventToStreamingAssets(parameters);
+
+        //save to the cloud
         eventQueue.Enqueue(parameters);
 
         if (!isSending) StartCoroutine(SendEvents());
 
+    }
+
+    //local save to persistent data path
+    private void SaveEventToStreamingAssets(Dictionary<string, object> data)
+    {
+        string folderPath = Path.Combine(Application.persistentDataPath, "Events");
+
+        if (!Directory.Exists(folderPath))
+            Directory.CreateDirectory(folderPath);
+
+        //save per-user event file
+        string fileName = SessionManager.Instance.GetUsername() + "_events.json";
+        string filePath = Path.Combine(folderPath, fileName);
+
+        //load existing data if it exists
+        SerializationListWrapper allEvents = new SerializationListWrapper();
+
+        if (File.Exists(filePath))
+        {
+            string existingJson = File.ReadAllText(filePath);
+            allEvents = JsonUtility.FromJson<SerializationListWrapper>(existingJson);
+        }
+
+        //add new event
+        SerializationWrapper newEvent = new SerializationWrapper(data);
+        allEvents.events.Add(newEvent);
+
+        // Save back to file
+        string json = JsonUtility.ToJson(allEvents, true);
+        File.WriteAllText(filePath, json);
+
+        Debug.Log("Appended event to: " + filePath);
     }
 
     private IEnumerator SendEvents()
@@ -95,9 +134,33 @@ public class TelemetryManager : MonoBehaviour
             return;
         }
 
+        SaveDataToFile(data);
+
         if (!isSending) StartCoroutine(SendSave(data));
 
     }
+
+    //save locally
+    private void SaveDataToFile(SaveData data)
+    {
+        string folderPath = Path.Combine(Application.persistentDataPath, "SaveData");
+
+        if (!Directory.Exists(folderPath))
+        {
+            Directory.CreateDirectory(folderPath);
+        }
+
+        string fileName = data.Name + "_save.json";
+        string filePath = Path.Combine(folderPath, fileName);
+
+        //serialize to JSON
+        string json = JsonUtility.ToJson(data, true); 
+
+        File.WriteAllText(filePath, json);
+
+        Debug.Log("Saved game data to: " + filePath);
+    }
+
 
     private IEnumerator SendSave(SaveData data)
     {
@@ -123,8 +186,6 @@ public class TelemetryManager : MonoBehaviour
                 Debug.Log("Save data sent successfully");
             }
         }
-
-
         isSending = false;
 
     }
@@ -145,5 +206,11 @@ public class TelemetryManager : MonoBehaviour
                 values.Add(kvp.Value.ToString());
             }
         }
+    }
+
+    [System.Serializable]
+    private class SerializationListWrapper
+    {
+        public List<SerializationWrapper> events = new List<SerializationWrapper>();
     }
 }
