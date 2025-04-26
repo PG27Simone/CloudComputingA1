@@ -65,10 +65,10 @@ public class ButtonClickLogger : MonoBehaviour
 
         try
         {
-            string username = SessionManager.Instance.GetUsername();
+            string userId = SessionManager.Instance.GetUserId();
 
             SaveData NewSave = new SaveData();
-            NewSave.Name = username;
+            NewSave.UserId = userId;
             NewSave.Score = myScore.text;
             NewSave.SliderValue = mySlider.value;
 
@@ -102,7 +102,7 @@ public class ButtonClickLogger : MonoBehaviour
     {
         // Set folder path to the UserSaves/SaveData directory
         string folderPath = Path.Combine(Application.persistentDataPath, "SaveData");
-        string currentUsername = SessionManager.Instance.GetUsername();
+        string currentId = SessionManager.Instance.GetUserId();
 
         if (!Directory.Exists(folderPath))
         {
@@ -118,7 +118,7 @@ public class ButtonClickLogger : MonoBehaviour
 
             SaveData data = JsonUtility.FromJson<SaveData>(json);
 
-            if (data.Name == currentUsername)
+            if (data.UserId == currentId)
             {
                 Debug.Log("Found matching file: " + filePath);
                 ApplySaveData(data);
@@ -126,7 +126,7 @@ public class ButtonClickLogger : MonoBehaviour
             }
         }
 
-        Debug.LogWarning("No save data found for username: " + currentUsername);
+        Debug.LogWarning("No save data found for userID: " + currentId);
     }
 
     private void ApplySaveData(SaveData data)

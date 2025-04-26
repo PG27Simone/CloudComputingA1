@@ -70,5 +70,571 @@
       "2025-04-17T22:55:35.0313386Z"
     ],
     "timestamp": "2025-04-17T22:55:35.039Z"
+  },
+  {
+    "keys": [
+      "startTime",
+      "username",
+      "eventName",
+      "sessionId",
+      "deviceTime"
+    ],
+    "values": [
+      "2025-04-23T17:02:31.6052735Z",
+      "simone",
+      "session_start",
+      "fabb7152-6159-44c7-9b53-92d0af471738",
+      "2025-04-23T17:02:31.6102919Z"
+    ],
+    "timestamp": "2025-04-23T17:02:31.619Z"
+  },
+  {
+    "keys": [
+      "startTime",
+      "username",
+      "eventName",
+      "sessionId",
+      "deviceTime"
+    ],
+    "values": [
+      "2025-04-23T17:13:21.7885771Z",
+      "simone",
+      "session_start",
+      "a7fb17bb-f410-45d3-be19-5f5a36369e22",
+      "2025-04-23T17:13:21.7926270Z"
+    ],
+    "timestamp": "2025-04-23T17:13:21.800Z"
+  },
+  {
+    "keys": [
+      "score",
+      "durationSec",
+      "endTime",
+      "username",
+      "eventName",
+      "sessionId",
+      "deviceTime"
+    ],
+    "values": [
+      "461904",
+      "13.63513",
+      "2025-04-23T17:13:35.5266125Z",
+      "simone",
+      "session_end",
+      "1ad93f5e-2780-45f8-9505-ceb1c00afc64",
+      "2025-04-23T17:13:35.5266125Z"
+    ],
+    "timestamp": "2025-04-23T17:13:36.001Z"
+  },
+  {
+    "keys": [
+      "startTime",
+      "username",
+      "eventName",
+      "sessionId",
+      "deviceTime"
+    ],
+    "values": [
+      "2025-04-26T23:29:49.2439608Z",
+      "simone",
+      "session_start",
+      "db40f655-d5ea-4333-a32c-16d37aa668c3",
+      "2025-04-26T23:29:49.2489558Z"
+    ],
+    "timestamp": "2025-04-26T23:29:49.258Z"
+  },
+  {
+    "keys": [
+      "score",
+      "durationSec",
+      "endTime",
+      "username",
+      "eventName",
+      "sessionId",
+      "deviceTime"
+    ],
+    "values": [
+      "427641",
+      "2.246549",
+      "2025-04-26T23:29:51.5561436Z",
+      "simone",
+      "session_end",
+      "0dad90b9-b7cf-4f5c-9bf8-0846d81d13b7",
+      "2025-04-26T23:29:51.5561436Z"
+    ],
+    "timestamp": "2025-04-26T23:29:58.234Z"
+  },
+  {
+    "keys": [
+      "startTime",
+      "username",
+      "eventName",
+      "sessionId",
+      "deviceTime"
+    ],
+    "values": [
+      "2025-04-26T23:30:54.3714589Z",
+      "simone",
+      "session_start",
+      "ac0ae9b2-6c1a-4379-9012-4c320c270cb4",
+      "2025-04-26T23:30:54.3755258Z"
+    ],
+    "timestamp": "2025-04-26T23:30:54.385Z"
+  },
+  {
+    "keys": [
+      "score",
+      "durationSec",
+      "endTime",
+      "username",
+      "eventName",
+      "sessionId",
+      "deviceTime"
+    ],
+    "values": [
+      "421445",
+      "11.87491",
+      "2025-04-26T23:31:06.3513174Z",
+      "simone",
+      "session_end",
+      "a72c2933-c0c8-48fc-87fd-ffe955028c79",
+      "2025-04-26T23:31:06.3513174Z"
+    ],
+    "timestamp": "2025-04-26T23:31:06.362Z"
+  },
+  {
+    "keys": [
+      "startTime",
+      "username",
+      "eventName",
+      "sessionId",
+      "deviceTime"
+    ],
+    "values": [
+      "2025-04-26T23:33:56.3617117Z",
+      "simone",
+      "session_start",
+      "74206caf-e5a1-4250-8263-45d4af70f73d",
+      "2025-04-26T23:33:56.3662739Z"
+    ],
+    "timestamp": "2025-04-26T23:33:56.374Z"
+  },
+  {
+    "keys": [
+      "score",
+      "durationSec",
+      "endTime",
+      "username",
+      "eventName",
+      "sessionId",
+      "deviceTime"
+    ],
+    "values": [
+      "427319",
+      "14.59019",
+      "2025-04-26T23:34:11.0377415Z",
+      "simone",
+      "session_end",
+      "08792295-aa4c-4aa9-8736-2953fd4ffd18",
+      "2025-04-26T23:34:11.0377415Z"
+    ],
+    "timestamp": "2025-04-26T23:34:11.043Z"
+  },
+  {
+    "keys": [
+      "startTime",
+      "username",
+      "eventName",
+      "sessionId",
+      "deviceTime"
+    ],
+    "values": [
+      "2025-04-26T23:36:42.2428746Z",
+      "simone",
+      "session_start",
+      "51764f8d-08e1-4da4-86a9-8881195cc2a4",
+      "2025-04-26T23:36:42.2470375Z"
+    ],
+    "timestamp": "2025-04-26T23:36:42.255Z"
+  },
+  {
+    "keys": [
+      "score",
+      "durationSec",
+      "endTime",
+      "username",
+      "eventName",
+      "sessionId",
+      "deviceTime"
+    ],
+    "values": [
+      "426263",
+      "18.06884",
+      "2025-04-26T23:37:00.3975868Z",
+      "simone",
+      "session_end",
+      "d02e7f16-561f-4fac-8038-223ff744de7b",
+      "2025-04-26T23:37:00.3975868Z"
+    ],
+    "timestamp": "2025-04-26T23:37:00.402Z"
+  },
+  {
+    "keys": [
+      "startTime",
+      "username",
+      "eventName",
+      "sessionId",
+      "deviceTime"
+    ],
+    "values": [
+      "2025-04-26T23:44:35.4704407Z",
+      "simone",
+      "session_start",
+      "daa42171-386e-431f-a049-faaadcc38fe5",
+      "2025-04-26T23:44:35.4744174Z"
+    ],
+    "timestamp": "2025-04-26T23:44:35.482Z"
+  },
+  {
+    "keys": [
+      "score",
+      "durationSec",
+      "endTime",
+      "username",
+      "eventName",
+      "sessionId",
+      "deviceTime"
+    ],
+    "values": [
+      "443289",
+      "14.90773",
+      "2025-04-26T23:44:50.4680727Z",
+      "simone",
+      "session_end",
+      "568734e1-6ca7-4577-8cdc-6637173f48bf",
+      "2025-04-26T23:44:50.4680727Z"
+    ],
+    "timestamp": "2025-04-26T23:44:50.473Z"
+  },
+  {
+    "keys": [
+      "startTime",
+      "username",
+      "eventName",
+      "sessionId",
+      "deviceTime"
+    ],
+    "values": [
+      "2025-04-26T23:46:51.8580903Z",
+      "simone",
+      "session_start",
+      "7eae6b7b-4fbc-49ef-a67d-02b32d286a26",
+      "2025-04-26T23:46:51.8625980Z"
+    ],
+    "timestamp": "2025-04-26T23:46:51.870Z"
+  },
+  {
+    "keys": [
+      "score",
+      "durationSec",
+      "endTime",
+      "username",
+      "eventName",
+      "sessionId",
+      "deviceTime"
+    ],
+    "values": [
+      "6494",
+      "20.09871",
+      "2025-04-26T23:47:12.0613796Z",
+      "simone",
+      "session_end",
+      "d4a44f64-da64-4da7-bda4-23d59747d335",
+      "2025-04-26T23:47:12.0613796Z"
+    ],
+    "timestamp": "2025-04-26T23:47:12.320Z"
+  },
+  {
+    "keys": [
+      "startTime",
+      "username",
+      "eventName",
+      "sessionId",
+      "deviceTime"
+    ],
+    "values": [
+      "2025-04-26T23:49:11.2018537Z",
+      "simone",
+      "session_start",
+      "59f427ac-ad18-44b4-bf2d-c1733d40b1e2",
+      "2025-04-26T23:49:11.2063716Z"
+    ],
+    "timestamp": "2025-04-26T23:49:11.216Z"
+  },
+  {
+    "keys": [
+      "score",
+      "durationSec",
+      "endTime",
+      "username",
+      "eventName",
+      "sessionId",
+      "deviceTime"
+    ],
+    "values": [
+      "5685",
+      "14.38623",
+      "2025-04-26T23:49:25.6411281Z",
+      "simone",
+      "session_end",
+      "253746f0-5c00-444a-aef7-f37e95bdfe4f",
+      "2025-04-26T23:49:25.6421192Z"
+    ],
+    "timestamp": "2025-04-26T23:49:36.182Z"
+  },
+  {
+    "keys": [
+      "startTime",
+      "username",
+      "eventName",
+      "sessionId",
+      "deviceTime"
+    ],
+    "values": [
+      "2025-04-26T23:49:36.1725334Z",
+      "simone",
+      "session_start",
+      "cd1e97a3-8d79-4c7c-99c4-80f3cd80fcac",
+      "2025-04-26T23:49:36.1725334Z"
+    ],
+    "timestamp": "2025-04-26T23:49:36.347Z"
+  },
+  {
+    "keys": [
+      "score",
+      "durationSec",
+      "endTime",
+      "username",
+      "eventName",
+      "sessionId",
+      "deviceTime"
+    ],
+    "values": [
+      "5685",
+      "21.2613",
+      "2025-04-26T23:50:00.9133764Z",
+      "simone",
+      "session_end",
+      "8940e9a0-10a2-4269-8cf7-3a4717464d6c",
+      "2025-04-26T23:50:00.9133764Z"
+    ],
+    "timestamp": "2025-04-26T23:50:00.919Z"
+  },
+  {
+    "keys": [
+      "startTime",
+      "username",
+      "eventName",
+      "sessionId",
+      "deviceTime"
+    ],
+    "values": [
+      "2025-04-26T23:50:31.2369928Z",
+      "simone",
+      "session_start",
+      "1a89e190-1e85-41e5-86f5-928445f430fe",
+      "2025-04-26T23:50:31.2369928Z"
+    ],
+    "timestamp": "2025-04-26T23:50:31.378Z"
+  },
+  {
+    "keys": [
+      "score",
+      "durationSec",
+      "endTime",
+      "username",
+      "eventName",
+      "sessionId",
+      "deviceTime"
+    ],
+    "values": [
+      "5685",
+      "5.409616",
+      "2025-04-26T23:50:36.6502008Z",
+      "simone",
+      "session_end",
+      "9b21d17a-24a5-4681-9f10-b6663fde128c",
+      "2025-04-26T23:50:36.6502008Z"
+    ],
+    "timestamp": "2025-04-26T23:50:38.873Z"
+  },
+  {
+    "keys": [
+      "startTime",
+      "username",
+      "eventName",
+      "sessionId",
+      "deviceTime"
+    ],
+    "values": [
+      "2025-04-26T23:50:58.9407308Z",
+      "simone",
+      "session_start",
+      "f94d22a4-0861-4da1-b540-ca1153de3a02",
+      "2025-04-26T23:50:58.9407308Z"
+    ],
+    "timestamp": "2025-04-26T23:50:59.079Z"
+  },
+  {
+    "keys": [
+      "startTime",
+      "username",
+      "eventName",
+      "sessionId",
+      "deviceTime"
+    ],
+    "values": [
+      "2025-04-26T23:51:57.1386470Z",
+      "simone",
+      "session_start",
+      "7c1c64ca-7d93-43b9-9c52-d0e89e08c6b9",
+      "2025-04-26T23:51:57.1436413Z"
+    ],
+    "timestamp": "2025-04-26T23:51:57.154Z"
+  },
+  {
+    "keys": [
+      "score",
+      "durationSec",
+      "endTime",
+      "username",
+      "eventName",
+      "sessionId",
+      "deviceTime"
+    ],
+    "values": [
+      "3002",
+      "11.89264",
+      "2025-04-26T23:52:09.0897507Z",
+      "simone",
+      "session_end",
+      "8463e88a-2bbd-4e06-8b87-b0c881a05ecd",
+      "2025-04-26T23:52:09.0897507Z"
+    ],
+    "timestamp": "2025-04-26T23:52:14.928Z"
+  },
+  {
+    "keys": [
+      "startTime",
+      "username",
+      "eventName",
+      "sessionId",
+      "deviceTime"
+    ],
+    "values": [
+      "2025-04-26T23:52:39.9781971Z",
+      "simone",
+      "session_start",
+      "e6ece3b4-c9d7-46ad-88d1-564ab0e0b397",
+      "2025-04-26T23:52:39.9781971Z"
+    ],
+    "timestamp": "2025-04-26T23:52:39.990Z"
+  },
+  {
+    "keys": [
+      "score",
+      "durationSec",
+      "endTime",
+      "username",
+      "eventName",
+      "sessionId",
+      "deviceTime"
+    ],
+    "values": [
+      "3002",
+      "7.783348",
+      "2025-04-26T23:52:50.7955236Z",
+      "simone",
+      "session_end",
+      "8413e2b6-9141-4de3-8fd7-651fc42820be",
+      "2025-04-26T23:52:50.7955236Z"
+    ],
+    "timestamp": "2025-04-26T23:52:51.089Z"
+  },
+  {
+    "keys": [
+      "startTime",
+      "username",
+      "eventName",
+      "sessionId",
+      "deviceTime"
+    ],
+    "values": [
+      "2025-04-26T23:52:56.6422928Z",
+      "simone",
+      "session_start",
+      "e1beccec-6a65-4ec6-a475-2a65d30f38c2",
+      "2025-04-26T23:52:56.6422928Z"
+    ],
+    "timestamp": "2025-04-26T23:52:56.650Z"
+  },
+  {
+    "keys": [
+      "score",
+      "durationSec",
+      "endTime",
+      "username",
+      "eventName",
+      "sessionId",
+      "deviceTime"
+    ],
+    "values": [
+      "3002",
+      "12.53967",
+      "2025-04-26T23:53:14.7970881Z",
+      "simone",
+      "session_end",
+      "4bb4852c-4400-42d5-a9cd-df410ce178b6",
+      "2025-04-26T23:53:14.7970881Z"
+    ],
+    "timestamp": "2025-04-26T23:53:15.282Z"
+  },
+  {
+    "keys": [
+      "startTime",
+      "username",
+      "eventName",
+      "sessionId",
+      "deviceTime"
+    ],
+    "values": [
+      "2025-04-26T23:53:25.9435583Z",
+      "simone",
+      "session_start",
+      "514d12d6-8782-4341-aea4-8525c62decaa",
+      "2025-04-26T23:53:25.9435583Z"
+    ],
+    "timestamp": "2025-04-26T23:53:25.952Z"
+  },
+  {
+    "keys": [
+      "score",
+      "durationSec",
+      "endTime",
+      "username",
+      "eventName",
+      "sessionId",
+      "deviceTime"
+    ],
+    "values": [
+      "3002",
+      "5.026558",
+      "2025-04-26T23:53:41.2901506Z",
+      "simone",
+      "session_end",
+      "be5e7ec6-d462-4b01-ac51-ba153425f299",
+      "2025-04-26T23:53:41.2901506Z"
+    ],
+    "timestamp": "2025-04-26T23:53:41.296Z"
   }
 ]

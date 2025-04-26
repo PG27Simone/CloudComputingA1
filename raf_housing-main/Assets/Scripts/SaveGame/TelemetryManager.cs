@@ -103,7 +103,7 @@ public class TelemetryManager : MonoBehaviour
                 request.downloadHandler = new DownloadHandlerBuffer();
 
                 request.SetRequestHeader("Content-Type", "application/json");
-                //TODO: Add bearer token --- "bearer ......."
+                request.SetRequestHeader("Authorization", "Bearer " + SessionManager.Instance.GetAuthToken());
 
                 yield return request.SendWebRequest();
 
@@ -150,7 +150,7 @@ public class TelemetryManager : MonoBehaviour
             Directory.CreateDirectory(folderPath);
         }
 
-        string fileName = data.Name + "_save.json";
+        string fileName = data.UserId + "_save.json";
         string filePath = Path.Combine(folderPath, fileName);
 
         //serialize to JSON
@@ -166,14 +166,16 @@ public class TelemetryManager : MonoBehaviour
     {
         isSending = true;
 
-        string json = JsonUtility.ToJson(data);
+        string json = JsonUtility.ToJson(data, true);
 
         using (UnityWebRequest request = new UnityWebRequest("http://localhost:3000/save", "POST"))
         {
             byte[] bodyRaw = Encoding.UTF8.GetBytes(json);
             request.uploadHandler = new UploadHandlerRaw(bodyRaw);
             request.downloadHandler = new DownloadHandlerBuffer();
+
             request.SetRequestHeader("Content-Type", "application/json");
+            request.SetRequestHeader("Authorization", "Bearer " + SessionManager.Instance.GetAuthToken());
 
             yield return request.SendWebRequest();
 

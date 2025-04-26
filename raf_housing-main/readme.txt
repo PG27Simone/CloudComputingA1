@@ -1,5 +1,7 @@
 PG27 Simone Cormier
-Cloud Computing A2
+Cloud Computing A3
+
+Update for A3: It now verifies token when saving, and saves/loads data through generated userID instead of the username. 
 
 You must start by going into the raf-housing-main>raf_housing_backend folder in a CMD and run "npm run dev" to run the backend server.
 

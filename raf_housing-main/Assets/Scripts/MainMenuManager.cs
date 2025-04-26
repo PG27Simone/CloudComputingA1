@@ -52,7 +52,6 @@ public class MainMenuManager : MonoBehaviour
 
     private void OnSignInCompleted(bool success, string responseData)
     {
-        
         if (success)
         {
             AuthService.SignInResponse signResp = JsonUtility.FromJson<AuthService.SignInResponse>(responseData);
@@ -61,6 +60,7 @@ public class MainMenuManager : MonoBehaviour
             {
                 SessionManager.Instance.SetAuthToken(signResp.token);
                 SessionManager.Instance.SetUsername(signInUsernameField.text.Trim());
+                SessionManager.Instance.SetUserId(signResp.userId.ToString());
                 Debug.Log("Login successful!" + signResp.token);
 
                 SceneManager.LoadScene(gameSceneName);
@@ -74,7 +74,5 @@ public class MainMenuManager : MonoBehaviour
         {
             Debug.LogError("Login Failed" + responseData);
         }
-
-
     }
 }

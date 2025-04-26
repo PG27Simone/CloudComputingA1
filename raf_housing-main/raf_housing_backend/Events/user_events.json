@@ -1,0 +1,40 @@
+[
+  {
+    "keys": [
+      "startTime",
+      "username",
+      "eventName",
+      "sessionId",
+      "deviceTime"
+    ],
+    "values": [
+      "2025-04-26T23:38:48.4572709Z",
+      "user",
+      "session_start",
+      "b5f079d6-34ce-4f13-adb4-2740c0a34608",
+      "2025-04-26T23:38:48.4572709Z"
+    ],
+    "timestamp": "2025-04-26T23:38:48.582Z"
+  },
+  {
+    "keys": [
+      "score",
+      "durationSec",
+      "endTime",
+      "username",
+      "eventName",
+      "sessionId",
+      "deviceTime"
+    ],
+    "values": [
+      "422721",
+      "14.22144",
+      "2025-04-26T23:39:02.7118212Z",
+      "user",
+      "session_end",
+      "2bbb4df2-7123-4d1c-b1d2-499f390fd40e",
+      "2025-04-26T23:39:02.7118212Z"
+    ],
+    "timestamp": "2025-04-26T23:39:02.715Z"
+  }
+]

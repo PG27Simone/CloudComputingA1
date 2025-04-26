@@ -80,7 +80,9 @@ public class AuthService : MonoBehaviour
     {
         public string token;
         public string message;
+        public int userId;
     }
+
 }
 
 

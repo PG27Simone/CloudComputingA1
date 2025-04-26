@@ -83,9 +83,9 @@ app.post('/save', (req, res) => {
     try {
         const eventData = req.body;
 
-        //if no username, error
-        if (!eventData.Name) {
-            return res.status(400).json({ error: "Missing username in request data." });
+        //if no userID, error
+        if (!eventData.UserId) {
+            return res.status(400).json({ error: "Missing userID in request data." });
         }
 
         //make sure save folder exists
@@ -94,7 +94,7 @@ app.post('/save', (req, res) => {
         }
 
         //define personalized save file
-        const userSavePath = path.join(SAVE_FOLDER, `${eventData.Name}_save.json`);
+        const userSavePath = path.join(SAVE_FOLDER, `${eventData.UserId}_save.json`);
 
         eventData.timestamp = new Date().toISOString();
 

@@ -6,10 +6,11 @@ public class SessionManager : MonoBehaviour
 
     public string AuthToken { get; private set; }
     private string username = null;
+    private string userId = null;
 
     private void Awake()
     {
-        if(Instance != null && Instance != this)
+        if (Instance != null && Instance != this)
         {
             Destroy(this.gameObject);
             return;
@@ -24,6 +25,11 @@ public class SessionManager : MonoBehaviour
         AuthToken = token;
     }
 
+    public string GetAuthToken()
+    {
+        return AuthToken;
+    }
+
     public void SetUsername(string name)
     {
         username = name;
@@ -32,5 +38,15 @@ public class SessionManager : MonoBehaviour
     public string GetUsername()
     {
         return username;
+    }
+
+    public void SetUserId(string id)
+    {
+        userId = id;
+    }
+
+    public string GetUserId()
+    {
+        return userId;
     }
 }
